@@ -21,12 +21,10 @@ this is a simple quiz api.
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
-│   ├── migrations
-│   │   ├── 0001_initial.py
-│   models.py
-│   urls.py
-│   views.py
-|   admin.py
+│   ├── models.py
+│   ├── urls.py
+│   └── views.py
+|   └── migrations
 ```
 
 ## API Endpoints
