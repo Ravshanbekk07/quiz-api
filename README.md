@@ -39,16 +39,24 @@ this is a simple quiz api.
 
 ### Question
 
-- `GET /api/question/` - List all question
-- `POST /api/question/` - Create a new question
-- `GET /api/question/<int:pk>/` - Retrieve a question
-- `PUT /api/question/<int:pk>/` - Update a question
-- `DELETE /api/question/<int:pk>/` - Delete a question
+- `GET /api/quiz/<int:quiz_id>/question/` - List all question
+- `POST /api/quiz/<int:quiz_id>/question/` - Create a new question
+- `GET /api/quiz/<int:quiz_id>/question/<int:pk>/` - Retrieve a question
+- `PUT /api/quiz/<int:quiz_id>/question/<int:pk>/` - Update a question
+- `DELETE /api/quiz/<int:quiz_id>/question/<int:pk>/` - Delete a question
 
-### Answer
+### Option
 
-- `GET /api/answer/` - List all answer
-- `POST /api/answer/` - Create a new answer
-- `GET /api/answer/<int:pk>/` - Retrieve a answer
-- `PUT /api/answer/<int:pk>/` - Update a answer
-- `DELETE /api/answer/<int:pk>/` - Delete a answer
+- `GET /api/quiz/<int:quiz_id>/question/<int:question_id>/option/` - List all option
+- `POST /api/quiz/<int:quiz_id>/question/<int:question_id>/option/` - Create a new option
+- `GET /api/quiz/<int:quiz_id>/question/<int:question_id>/option/<int:pk>/` - Retrieve a option
+- `PUT /api/quiz/<int:quiz_id>/question/<int:question_id>/option/<int:pk>/` - Update a option
+- `DELETE /api/quiz/<int:quiz_id>/question/<int:question_id>/option/<int:pk>/` - Delete a option
+
+## Take
+
+- `POST /api/quiz/<int:quiz_id>/take/` - Take a quiz
+
+## Answer
+
+- `POST /api/quiz/take/<int:take_id>/answer/` - Answer a question
