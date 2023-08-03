@@ -622,7 +622,7 @@ class TakeView(View):
 
 
 class ResponseView(View):
-    def get(self,request,pk=None):
+    def get(self,request,take_id):
         headers  = request.headers
         authorization = headers.get("Authorization")
         if not authorization:
@@ -637,17 +637,23 @@ class ResponseView(View):
             if not user:
                 return JsonResponse({'error':'unauthorized'},status =401)
             else:
-                if pk is None:
-                    responses = Response.objects.all()
-                    res_dic = [model_to_dict(response) for response in responses]
-                    return JsonResponse(res_dic,safe=False)
-                else:
-                    try:
-                        response = Response.objects.get(id=pk)
-                        response_dic = model_to_dict(response)
-                        return JsonResponse(response_dic)
-                    except Response.DoesNotExist:
-                        return JsonResponse({"error":"Response not found"},status=404)
+                
+                try:
+                    answers = Response.objects.filter(take=take_id)
+                    results =[]
+                    for answer in answers:
+                        results.append({
+                            'question':answer.question.content,
+                            
+                            'is_correct':answer.option.is_correct
+                        })
+                    return  JsonResponse( results,safe=False)
+                except Response.DoesNotExist:
+                    return JsonResponse({"error":"Response not found"},status=404)
+
+                
+
+               
 
     def post(self,request,take_id):
         headers  = request.headers
