@@ -636,20 +636,17 @@ class ResponseView(View):
             user = authenticate(username=username,password=password)
             if not user:
                 return JsonResponse({'error':'unauthorized'},status =401)
-            else:
+            
+            answers = Response.objects.filter(take=take_id)
+            results =[]
+            for answer in answers:
+                results.append({
+                    'question':answer.question.content,
+                    
+                    'is_correct':answer.option.is_correct
+                })
+            return  JsonResponse( results,safe=False)
                 
-                try:
-                    answers = Response.objects.filter(take=take_id)
-                    results =[]
-                    for answer in answers:
-                        results.append({
-                            'question':answer.question.content,
-                            
-                            'is_correct':answer.option.is_correct
-                        })
-                    return  JsonResponse( results,safe=False)
-                except Response.DoesNotExist:
-                    return JsonResponse({"error":"Response not found"},status=404)
 
                 
 
