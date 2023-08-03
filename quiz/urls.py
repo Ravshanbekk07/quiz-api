@@ -16,4 +16,5 @@ urlpatterns = [
     
 
     path('quiz/take/<int:take_id>/answer/',views.ResponseView.as_view()),
+    path('quiz/take/<int:take_id>/result/',views.ResponseView.as_view()),
 ]
